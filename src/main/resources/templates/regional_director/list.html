@@ -12,6 +12,7 @@
         <th>ID</th>
         <th>Имя</th>
         <th>Фамилия</th>
+
         <!-- Другие заголовки столбцов -->
         <th>Менеджер</th> <!-- Новый столбец -->
     </tr>
@@ -21,18 +22,16 @@
         <td th:text="${director.id}"></td>
         <td th:text="${director.firstName}"></td>
         <td th:text="${director.lastName}"></td>
+
+
+
         <!-- Добавляем выпадающий список для менеджера -->
         <td>
             <form th:action="@{'/regionalDirectors/addManager/' + ${director.id}}" method="post">
                 <!-- Выпадающий список менеджеров -->
-                <label>
-                    <select name="managerId">
-                        <!-- Перебор всех территориальных менеджеров в модели -->
-                        <option th:each="manager : ${territorialManagers}" th:value="${manager.id}" th:text="${manager.firstName + ' ' + manager.lastName}"></option>
-                    </select>
-                </label>
-                <!-- Скрытое поле для передачи айди регионального директора -->
-                <input type="hidden" name="directorId" th:value="${director.id}" />
+                <select name="managerId">
+                    <option th:each="manager : ${territorialManagers}" th:value="${manager.id}" th:text="${manager.firstName + ' ' + manager.lastName}"></option>
+                </select>
                 <!-- Кнопка для добавления менеджера -->
                 <button type="submit">Добавить</button>
                 <!-- Сообщение об успешном добавлении -->
@@ -41,19 +40,16 @@
 
             <form th:action="@{'/regionalDirectors/removeManager/' + ${director.id}}" method="get">
                 <!-- Выпадающий список менеджеров -->
-                <label>
-                    <select name="managerId">
-                        <!-- Перебор всех территориальных менеджеров в модели -->
-                        <option th:each="manager : ${territorialManagers}" th:value="${manager.id}" th:text="${manager.firstName + ' ' + manager.lastName}"></option>
-                    </select>
-                </label>
-                <!-- Скрытое поле для передачи айди регионального директора -->
-                <input type="hidden" name="directorId" th:value="${director.id}" />
+                <select name="managerId">
+                    <option th:each="manager : ${territorialManagers}" th:value="${manager.id}" th:text="${manager.firstName + ' ' + manager.lastName}"></option>
+                </select>
                 <!-- Кнопка для удаления менеджера -->
                 <button type="submit">Удалить</button>
                 <!-- Сообщение об успешном удалении -->
                 <p th:if="${param.managerId != null}">Менеджер успешно удален</p>
             </form>
+
+
         </td>
     </tr>
 </table>

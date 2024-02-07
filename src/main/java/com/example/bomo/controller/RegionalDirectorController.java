@@ -34,6 +34,8 @@ public class RegionalDirectorController {
         List<TerritorialManager> territorialManagers = territorialManagerService.getAllTerritorialManagers();
         model.addAttribute("regionalDirectors", regionalDirectors);
         model.addAttribute("territorialManagers", territorialManagers);
+
+
         return "regional_director/list";
     }
 
@@ -71,15 +73,18 @@ public class RegionalDirectorController {
         return "redirect:/regionalDirectors/list";
     }
 
-    @PostMapping ("/addManager/{directorId}/{managerId}")
-    public String addTerritorialManagerToDirector(@PathVariable Long directorId, @PathVariable Long managerId) {
+    @PostMapping("/addManager/{directorId}")
+    public String addTerritorialManagerToDirector(@PathVariable Long directorId, @RequestParam Long managerId, Model model) {
+        List<TerritorialManager> territorialManagers = territorialManagerService.getAllTerritorialManagers();
+        model.addAttribute("territorialManagers", territorialManagers);
 
         regionalDirectorService.assignTerritorialManager(directorId, managerId);
         return "redirect:/regionalDirectors/list";
     }
 
-    @GetMapping("/removeManager/{directorId}/{managerId}")
-    public String removeTerritorialManagerFromDirector(@PathVariable Long directorId, @PathVariable Long managerId) {
+
+    @GetMapping("/removeManager/{directorId}")
+    public String removeTerritorialManagerFromDirector(@PathVariable Long directorId, @RequestParam Long managerId) {
         regionalDirectorService.removeTerritorialManagerFromDirector(directorId, managerId);
         return "redirect:/regionalDirectors/list";
     }

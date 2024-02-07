@@ -50,6 +50,7 @@ public class RegionalDirectorService {
 
     @Transactional
     public void assignTerritorialManager(Long regionalDirectorId, Long territorialManagerId) {
+        System.out.println("Entering myMethod with param1: " + regionalDirectorId + ", param2: " + territorialManagerId);
         Optional<RegionalDirector> regionalDirectorOptional = regionalDirectorRepository.findById(regionalDirectorId);
         Optional<TerritorialManager> territorialManagerOptional = territorialManagerRepository.findById(territorialManagerId);
 
@@ -59,8 +60,8 @@ public class RegionalDirectorService {
 
             regionalDirector.setTerritorialManager(territorialManager);
             regionalDirectorRepository.save(regionalDirector);
-        } else {
-            throw new EntityNotFoundException("Региональный директор или территориальный менеджер не найден");
+        }else {
+            throw new EntityNotFoundException("Региональный директор или территориальный менеджер не найден при добавлении");
         }
     }
 
@@ -76,7 +77,7 @@ public class RegionalDirectorService {
             regionalDirector.removeTerritorialManager(territorialManager);
             regionalDirectorRepository.save(regionalDirector);
         } else {
-            throw new EntityNotFoundException("Региональный директор или территориальный менеджер не найден");
+            throw new EntityNotFoundException("Региональный директор или территориальный менеджер не найден при удалении");
         }
     }
 

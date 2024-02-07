@@ -1,11 +1,11 @@
 package com.example.bomo.model;
 
-import com.example.role.Region;
-import com.example.role.Role;
+
+import com.example.bomo.role.Region;
+import com.example.bomo.role.Role;
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -43,16 +43,20 @@ public class RegionalDirector {
 
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "regionalDirector", fetch = FetchType.LAZY)
+    @Getter
+    @Setter
     private List<TerritorialManager> territorialManagers;
 
 
 
     public void setTerritorialManager(TerritorialManager territorialManager) {
+        System.out.println("Entering myMethod with param1: " + territorialManager);
         if (territorialManagers == null) {
             territorialManagers = new ArrayList<>();
         }
         territorialManagers.add(territorialManager);
         territorialManager.setRegionalDirector(this);
+        System.out.println();
     }
     public void removeTerritorialManager(TerritorialManager territorialManager) {
         if (territorialManagers != null) {

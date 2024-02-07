@@ -1,12 +1,14 @@
 package com.example.bomo.model;
 
 
-import com.example.role.Region;
-import com.example.role.Role;
+
+import com.example.bomo.role.Region;
+import com.example.bomo.role.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -44,10 +46,6 @@ public class TerritorialManager {
     @ManyToOne
     @JoinColumn(name = "regional_director_id")
     private RegionalDirector regionalDirector;
-
-
-
-
 
 
 }

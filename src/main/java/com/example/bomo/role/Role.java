@@ -1,4 +1,4 @@
-package com.example.role;
+package com.example.bomo.role;
 
 
 
