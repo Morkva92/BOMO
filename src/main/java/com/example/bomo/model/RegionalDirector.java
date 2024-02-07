@@ -3,12 +3,12 @@ package com.example.bomo.model;
 
 import com.example.bomo.role.Region;
 import com.example.bomo.role.Role;
-import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -43,8 +43,6 @@ public class RegionalDirector {
 
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "regionalDirector", fetch = FetchType.LAZY)
-    @Getter
-    @Setter
     private List<TerritorialManager> territorialManagers;
 
 
@@ -56,7 +54,7 @@ public class RegionalDirector {
         }
         territorialManagers.add(territorialManager);
         territorialManager.setRegionalDirector(this);
-        System.out.println();
+
     }
     public void removeTerritorialManager(TerritorialManager territorialManager) {
         if (territorialManagers != null) {
@@ -64,7 +62,23 @@ public class RegionalDirector {
             territorialManager.setRegionalDirector(null);
         }
     }
-
+    @Override
+    public String toString() {
+        return "RegionalDirector{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", region=" + region +
+                ", birthDate=" + birthDate +
+                ", photo=" + Arrays.toString(photo) +
+                ", role=" + role +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 
 
 }

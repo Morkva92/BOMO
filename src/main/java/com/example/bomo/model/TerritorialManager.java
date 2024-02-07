@@ -8,9 +8,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Arrays;
 import java.util.Date;
 
 @Entity
@@ -47,5 +47,22 @@ public class TerritorialManager {
     @JoinColumn(name = "regional_director_id")
     private RegionalDirector regionalDirector;
 
+    @Override
+    public String toString() {
+        return "TerritorialManager{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", region=" + region +
+                ", birthDate=" + birthDate +
+                ", photo=" + Arrays.toString(photo) +
+                ", role=" + role +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 
 }

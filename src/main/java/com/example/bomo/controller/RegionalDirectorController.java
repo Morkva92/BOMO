@@ -74,9 +74,8 @@ public class RegionalDirectorController {
     }
 
     @PostMapping("/addManager/{directorId}")
-    public String addTerritorialManagerToDirector(@PathVariable Long directorId, @RequestParam Long managerId, Model model) {
-        List<TerritorialManager> territorialManagers = territorialManagerService.getAllTerritorialManagers();
-        model.addAttribute("territorialManagers", territorialManagers);
+    public String addTerritorialManagerToDirector(@PathVariable Long directorId, @RequestParam Long managerId) {
+
 
         regionalDirectorService.assignTerritorialManager(directorId, managerId);
         return "redirect:/regionalDirectors/list";
